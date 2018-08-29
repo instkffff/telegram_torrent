@@ -17,12 +17,11 @@ bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, 
 //torrent magnetic
 bot.command('magnetic',(ctx) => {
 	let magnetic_url = ctx.state.command.args
-	var replay = ctx.replay
 	client.add(magnetic_url,{path: './file_save'}, 
 		function(torrent){
-			replay('torrent download start')
+			ctx.replay('torrent download start')
 			torrent.on('done',function(){
-				replay('torrent download finished')
+				ctx.replay('torrent download finished')
 				var file_list = torrent.files.find(
 					function(file_list){
 						return file.path.endsWith(['.mp4','.m4v','.mkv','.avi'])
@@ -38,22 +37,22 @@ bot.command('magnetic',(ctx) => {
 bot.command('onDownload',(ctx) => {
 	var replay = ctx.replay
 	torrent.on('download',function(bytes){
-		replay('just downloaded:' + bytes)
-		replay('total downloaded:' + torrent.downloaded)
-		replay('progress:' + torrent.progress )
+		ctx.replay('just downloaded:' + bytes)
+		ctx.replay('total downloaded:' + torrent.downloaded)
+		ctx.replay('progress:' + torrent.progress )
 	})
 
 })
 
 //destroy
-bot.command('destroy',(ctx,) => {
+bot.command('destroy',(ctx) => {
 	var replay = ctx.replay
 	let torrent_id = ctx.state.command.args
 	client.remove(torrent_id,
 		function(){
-			replay('remove torrent successful')
+			ctx.replay('remove torrent successful')
 		}).catch(function(err){
-			replay('please contact NightCandle for help')
+			ctx.replay('please contact NightCandle for help')
 		})
 })
 
