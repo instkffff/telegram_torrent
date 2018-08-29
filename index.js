@@ -19,15 +19,16 @@ bot.command('magnetic',(ctx) => {
 	let magnetic_url = ctx.state.command.args
 	client.add(magnetic_url,{path: './file_save'}, 
 		function(torrent){
-			ctx.replay('torrent download start')
+			bot.use((ctx) => {ctx.replay('torrent download start')})
 			torrent.on('done',function(){
-				ctx.replay('torrent download finished')
+				bot.use((ctx) => {ctx.replay('torrent download finished')})
 				var file_list = torrent.files.find(
 					function(file_list){
 						return file.path.endsWith(['.mp4','.m4v','.mkv','.avi'])
 				})
-				ctx.replayWithVideo({
-					source:fs.createReadStream(`./file_save/ ${file_list}`)
+				bot.use((ctx) => {ctx.replayWithVideo({
+						source:fs.createReadStream(`./file_save/ ${file_list}`)
+					})
 				})
 			})
 		})
@@ -35,24 +36,23 @@ bot.command('magnetic',(ctx) => {
 
 //current download list
 bot.command('onDownload',(ctx) => {
-	var replay = ctx.replay
 	torrent.on('download',function(bytes){
-		ctx.replay('just downloaded:' + bytes)
-		ctx.replay('total downloaded:' + torrent.downloaded)
-		ctx.replay('progress:' + torrent.progress )
+		bot.use((ctx) => {ctx.replay('just downloaded:' + bytes  
+'total downloaded:' + torrent.downloaded
+'progress:' + torrent.progress 
+		)})
 	})
 
 })
 
 //destroy
 bot.command('destroy',(ctx) => {
-	var replay = ctx.replay
 	let torrent_id = ctx.state.command.args
 	client.remove(torrent_id,
 		function(){
-			ctx.replay('remove torrent successful')
+			bot.use((ctx) => {ctx.replay('remove torrent successful')})
 		}).catch(function(err){
-			ctx.replay('please contact NightCandle for help')
+			bot.use((ctx) => {ctx.replay('please contact NightCandle for help')})
 		})
 })
 
