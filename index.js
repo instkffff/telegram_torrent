@@ -35,15 +35,7 @@ bot.command('magnetic',(ctx) => {
 })
 
 //current download list
-bot.command('onDownload',(ctx) => {
-	torrent.on('download',function(bytes){
-		bot.use((ctx) => {ctx.replay('just downloaded:' + bytes  
-'total downloaded:' + torrent.downloaded
-'progress:' + torrent.progress 
-		)})
-	})
 
-})
 
 //destroy
 bot.command('destroy',(ctx) => {
