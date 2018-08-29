@@ -17,16 +17,16 @@ bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, 
 //torrent magnetic
 bot.command('magnetic',(ctx) => {
 	let magnetic_url = ctx.state.command.args
-	ctx.replay('torrent download start')
+	ctx.reply('torrent download start')
 	client.add(magnetic_url,{path: './file_save'}, 
 		function(torrent){
 			torrent.on('done',function(){
-				ctx.replay('torrent download finished')
+				ctx.reply('torrent download finished')
 				var file_list = torrent.files.find(
 					function(file_list){
 						return file.path.endsWith(['.mp4','.m4v','.mkv','.avi'])
 				})
-				ctx.replayWithVideo({
+				ctx.replyWithVideo({
 					source:fs.createReadStream(`./file_save/ ${file_list}`)
 				})
 			})
