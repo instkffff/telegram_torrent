@@ -4,13 +4,12 @@ require('dotenv').config({path:'./config.env'})
 const Telegraf = require('telegraf')
 const commandParts = require('telegraf-command-parts')
 
-//mid_ware
-bot.use(commandParts())
-
 //new telegraf bot
 const bot = new Telegraf(process.env.BOT_TOKEN)
 //new torrent client
 const client = new WebTorrent()
+//mid_ware
+bot.use(commandParts())
 //normal
 bot.start((ctx) => ctx.reply('Welcome! please check /help for more information'))
 bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, if you want use please contact NightCandle for permission.'))
