@@ -18,9 +18,9 @@ bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, 
 bot.command('magnetic',(ctx) => {
 	let magnetic_url = ctx.state.command.args
 	client.add(magnetic_url,{path: './file_save'}, 
-		function(torrent){
+		function(torrent,ctx){
 			ctx.replay('torrent download start')
-			torrent.on('done',function(){
+			torrent.on('done',function(ctx){
 				ctx.replay('torrent download finished')
 				var file_list = torrent.files.find(
 					function(file_list){
@@ -35,7 +35,7 @@ bot.command('magnetic',(ctx) => {
 
 //current download list
 bot.command('onDownload',(ctx) => {
-	torrent.on('download',function(bytes){
+	torrent.on('download',function(bytes,ctx){
 		ctx.replay('just downloaded:' + bytes)
 		ctx.replay('total downloaded:' + torrent.downloaded)
 		ctx.replay('progress:' + torrent.progress )
@@ -47,7 +47,7 @@ bot.command('onDownload',(ctx) => {
 bot.command('destroy',(ctx) => {
 	let torrent_id = ctx.state.command.args
 	client.remove(torrent_id,
-		function(){
+		function(ctx){
 			ctx.replay('remove torrent successful')
 		}).catch(function(err){
 			ctx.replay('please contact NightCandle for help')
