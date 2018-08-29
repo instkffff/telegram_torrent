@@ -15,8 +15,9 @@ bot.start((ctx) => ctx.reply('Welcome! please check /help for more information')
 bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, if you want use please contact NightCandle for permission.'))
 
 //torrent magnetic
-bot.command('magnetic',({ctx,replay}) => {
+bot.command('magnetic',(ctx) => {
 	let magnetic_url = ctx.state.command.args
+	var replay = ctx.replay
 	client.add(magnetic_url,{path: './file_save'}, 
 		function(torrent){
 			replay('torrent download start')
@@ -34,7 +35,8 @@ bot.command('magnetic',({ctx,replay}) => {
 })
 
 //current download list
-bot.command('onDownload',({ctx,replay}) => {
+bot.command('onDownload',(ctx) => {
+	var replay = ctx.replay
 	torrent.on('download',function(bytes){
 		replay('just downloaded:' + bytes)
 		replay('total downloaded:' + torrent.downloaded)
@@ -44,7 +46,8 @@ bot.command('onDownload',({ctx,replay}) => {
 })
 
 //destroy
-bot.command('destroy',({ctx,replay}) => {
+bot.command('destroy',(ctx,) => {
+	var replay = ctx.replay
 	let torrent_id = ctx.state.command.args
 	client.remove(torrent_id,
 		function(){
