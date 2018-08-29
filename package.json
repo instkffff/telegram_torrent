@@ -1,0 +1,27 @@
+{
+  "name": "telegram_torrent",
+  "version": "1.0.0",
+  "description": "tool for download torrent through telegram",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv": "6.0.0",
+    "npm": "^6.4.0",
+    "regexgen.js": "^0.2.1",
+    "tar": "^4.4.6",
+    "telegraf": "3.22.2",
+    "telegraf-command-parts": "1.0.3",
+    "telegraf-logger": "3.0.0",
+    "webtorrent": "^0.102.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "torrent"
+  ],
+  "author": "NightCandle",
+  "license": "None"
+}
