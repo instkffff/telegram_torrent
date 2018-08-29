@@ -21,14 +21,7 @@ bot.command('magnetic',(ctx) => {
 	client.add(magnetic_url,{path: './file_save'}, 
 		function(torrent){
 			torrent.on('done',function(){
-				ctx.reply('torrent download finished')
-				var file_list = torrent.files.find(
-					function(file_list){
-						return file.path.endsWith(['.mp4','.m4v','.mkv','.avi'])
-				})
-				ctx.replyWithVideo({
-					source:fs.createReadStream(`./file_save/ ${file_list}`)
-				})
+				console.log('torrent download finished')
 			})
 		})
 })
