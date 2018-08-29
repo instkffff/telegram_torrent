@@ -16,48 +16,14 @@ bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, 
 
 //torrent magnetic
 bot.command('magnetic',(ctx) => {
-	function start(){
-		ctx.replay('torrent download start')
-	}
-	function finished(){
-		ctx.replay('torrent download start')
-	}
 	let magnetic_url = ctx.state.command.args
-	client.add(magnetic_url,{path: './file_save'}, 
-		function(torrent){
-			start()
-			torrent.on('done',function(){
-				finished()
-				var file_list = torrent.files.find(
-					function(file_list){
-						return file.path.endsWith(['.mp4','.m4v','.mkv','.avi'])
-				})
-				//ctx.replayWithVideo({
-				//	source:fs.createReadStream(`./file_save/ ${file_list}`)
-				//})
-			})
-		})
-})
+	client.add(magnetic_url),{path: './file_save'}
+	ctx.replay('torrent download start')
+}).then(function(torrent){
+	torrent.on('done')
+	var file_list = torrent.files
+	return file_list
+}).then(ctx.replay('torrent download finished'))
 
-//current download list
-bot.command('onDownload',(ctx) => {
-	torrent.on('download',function(bytes){
-		ctx.replay('just downloaded:' + bytes)
-		ctx.replay('total downloaded:' + torrent.downloaded)
-		ctx.replay('progress:' + torrent.progress )
-	})
-
-})
-
-//destroy
-bot.command('destroy',(ctx) => {
-	let torrent_id = ctx.state.command.args
-	client.remove(torrent_id,
-		function(){
-			ctx.replay('remove torrent successful')
-		}).catch(function(err){
-			ctx.replay('please contact NightCandle for help')
-		})
-})
 
 bot.startPolling()
