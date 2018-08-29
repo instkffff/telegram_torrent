@@ -17,13 +17,20 @@ bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, 
 //torrent magnetic
 bot.command('magnetic',(ctx) => {
 	let magnetic_url = ctx.state.command.args
-	client.add(magnetic_url),{path: './file_save'}
 	ctx.replay('torrent download start')
-}).then(function(torrent){
-	torrent.on('done')
-	var file_list = torrent.files
-	return file_list
-}).then(ctx.replay('torrent download finished'))
-
+	client.add(magnetic_url,{path: './file_save'}, 
+		function(torrent){
+			torrent.on('done',function(){
+				ctx.replay('torrent download finished')
+				var file_list = torrent.files.find(
+					function(file_list){
+						return file.path.endsWith(['.mp4','.m4v','.mkv','.avi'])
+				})
+				ctx.replayWithVideo({
+					source:fs.createReadStream(`./file_save/ ${file_list}`)
+				})
+			})
+		})
+})
 
 bot.startPolling()
