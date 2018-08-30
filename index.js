@@ -18,10 +18,10 @@ bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, 
 bot.command('magnetic',(ctx) => {
 	let magnetic_url = ctx.state.command.args
 	client.add(magnetic_url,{path: './file_save'}, 
-		ctx.reply('torrent download start')
 		function(torrent){
+			ctx.reply('torrent download start')
 			torrent.on('done',function(){
-				console.log('torrent download finished')
+				ctx.reply('torrent download finished')
 			})
 		})
 })
