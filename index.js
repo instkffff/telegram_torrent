@@ -27,10 +27,10 @@ bot.command('magnetic',(ctx) => {
 })
 
 //state
-bot.command('progress',(reply) =>{
+bot.command('progress',(ctx) =>{
 	console.log(client.progress)
 	console.log(client.downloadSpeed)
-	reply(`${client.progress}
+	ctx.reply(`${client.progress}
 ${client.downloadSpeed}`)
 })
 
