@@ -38,12 +38,11 @@ ${client.downloadSpeed}`)
 bot.command('remove',(ctx) => {
 	let torrentId = ctx.state.command.args
 	client.remove(torrentId,
-		function(error){
-			if(error){
+		function(err){
+			if(err){
 				ctx.reply('torrent remove failed')
 				return
 			}
-			throw err
 			ctx.reply('torrent remove successful')
 		}
 		)
