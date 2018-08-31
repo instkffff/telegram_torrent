@@ -41,7 +41,9 @@ bot.command('remove',(ctx) => {
 		function(err){
 			if(err){
 				ctx.reply('torrent remove failed')
+				return
 			}
+			throw err
 			ctx.reply('torrent remove successful')
 		}
 		)
