@@ -26,4 +26,24 @@ bot.command('magnetic',(ctx) => {
 		})
 })
 
+//state
+bot.command('progress',(reply) =>{
+	console.log(client.progress)
+	console.log(client.downloadSpeed)
+	reply(`${client.progress}
+${client.downloadSpeed}`)
+})
+
+//remove
+bot.command('remove',(ctx) => {
+	let torrentId = ctx.state.command.args
+	client.remove(torrentId,
+  function(){
+    ctx.reply('torrent remove successful')
+  }).catch(function(err){
+    ctx.reply('torrent remove failed')
+  })
+  
+})
+
 bot.startPolling()
