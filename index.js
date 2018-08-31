@@ -30,7 +30,8 @@ bot.command('magnetic',(ctx) => {
 bot.command('progress',(ctx) =>{
 	console.log(client.progress)
 	console.log(client.downloadSpeed)
-	ctx.reply('`${client.progress},${client.downloadSpeed}`')
+	ctx.reply(`${client.progress}
+${client.downloadSpeed}`)
 })
 
 //remove
