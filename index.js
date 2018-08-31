@@ -38,12 +38,13 @@ ${client.downloadSpeed}`)
 bot.command('remove',(ctx) => {
 	let torrentId = ctx.state.command.args
 	client.remove(torrentId,
-		ctx.reply('torrent remove successful')
 		function(err){
 			if(err){
 				ctx.reply('torrent remove failed')
 			}
+			ctx.reply('torrent remove successful')
 		}
+		)
 })
 
 bot.startPolling()
