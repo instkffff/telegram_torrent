@@ -12,9 +12,9 @@ bot.command('uploadVideo',(ctx) => {
 	let Viedo = ctx.state.command.args
 	console.log(ctx.state.command.args)
 	ctx.reply({
-		source: '/home/telegram_torrent/file_save/bbb_sunflower_1080p_60fps_stereo_abl.mp4'
+		source: './file_save/bbb_sunflower_1080p_60fps_stereo_abl.mp4'
 	})
-	.catch((error) => {ctx.reply('failed')})
+	.catch((error) => {ctx.reply(error)})
 })
 
 bot.startPolling()
