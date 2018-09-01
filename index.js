@@ -71,14 +71,15 @@ bot.command('ls',(ctx) => {
 
 //removeFolder&files
 bot.command('rm',(ctx) => {
-	fileManager.exists('ctx.state.command.args')
+	fileManager.exists(`${ctx.state.command.args}`)
 		.then((exists) => {
 			if (exists === true){
-				fileManager.removeDir('ctx.state.command.args')
+				fileManager.removeDir(`${ctx.state.command.args}`)
 				ctx.reply('removeDir successful')
 			}
 			else if (exists === false){
-				fileManager.removeFile('ctx.state.command.args')
+				fileManager.removeFile(`${ctx.state.command.args}`)
+				ctx.reply('removeFile successful')
 			}
 		})
 		.catch((error) => {ctx.reply(error)})
