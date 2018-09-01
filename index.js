@@ -60,29 +60,15 @@ bot.command('list',(ctx) => {
 		})
 		.catch((error) => {ctx.reply(error.code)})
 })
+
 //listFolder
 bot.command('ls',(ctx) => {
-	fileManager.listDeep('ctx.state.command.args')
+	let Path = ctx.state.command.args
+	fileManager.listDeep(`./file_save/${Path}`)
 		.then((entries) => {
 			ctx.reply(entries)
 		})
 		.catch((error) => {ctx.reply(error.code)})
-})
-
-//removeFolder&files
-bot.command('rm',(ctx) => {
-	fileManager.exists(`${ctx.state.command.args}`)
-		.then((exists) => {
-			if (exists === true){
-				fileManager.removeDir(`${ctx.state.command.args}`)
-				ctx.reply('removeDir successful')
-			}
-			else if (exists === false){
-				fileManager.removeFile(`${ctx.state.command.args}`)
-				ctx.reply('removeFile successful')
-			}
-		})
-		.catch((error) => {ctx.reply(error)})
 })
 
 //uploadVideo
