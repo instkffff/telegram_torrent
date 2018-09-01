@@ -59,6 +59,7 @@ bot.command('ls',(ctx) => {
 
 bot.command('list',(ctx) => {
 	ctx.reply(`${file.listPath('./file_save')}`)
+	console.log(file.listPath('./file_save'))
 })
 
 bot.command('rm',(ctx) => {
