@@ -3,7 +3,7 @@ var WebTorrent = require('webtorrent')
 require('dotenv').config({path:'./config.env'})
 const Telegraf = require('telegraf')
 const commandParts = require('telegraf-command-parts')
-const file = require('./file.js')
+const fileManager = require('file-manager-js')
 
 //new telegraf bot
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -52,36 +52,42 @@ bot.command('remove',(ctx) => {
 	}
 })
 
-bot.command('ls',(ctx) => {
-	let Path = ctx.state.command.args
-	ctx.reply(`${file.listPath(Path)}`)
-})
-
+//list
 bot.command('list',(ctx) => {
-	ctx.reply(`${file.listPath('./file_save')}`)
-	console.log(file.listPath('./file_save'))
+	fileManager.list('./file_save')
+		.then((entries) => {
+			ctx.reply(entries)
+		})
+		.catch((error) => {ctx.reply(error.code)})
+})
+//listFolder
+bot.command('ls',(ctx) => {
+	fileManager.listDeep('ctx.state.command.args')
+		.then((entries) => {
+			ctx.reply(entries)
+		})
+		.catch((error) => {ctx.reply(error.code)})
 })
 
+//removeFolder&files
 bot.command('rm',(ctx) => {
-	let Path = ctx.state.command.args
-	try{
-		file.removeFolder(Path, (err) => 
-		{
-			if(error){
-				throw err
-			} else{
-				ctx.reply('removeFolder successful')
+	fileManager.exists('ctx.state.command.args')
+		.then((exists) => {
+			if (exists === true){
+				fileManager.removeDir('ctx.state.command.args')
+				ctx.reply('removeDir successful')
+			}
+			else if (exists === false){
+				fileManager.removeFile('ctx.state.command.args')
 			}
 		})
-	} catch (err){
-		ctx.reply('removeFolder failed')
-	}
+		.catch((error) => {ctx.reply(error)})
 })
 
-bot.command('uploadVideo',(ctx) => {
-	let video = ctx.state.command.args
+//uploadVideo
+bot.command('uploadVideo',(ctx) => { 
 	ctx.replyWithVideo({
-		source: `${video}`
+		source: `ctx.state.command.args`
 	})
 })
 
