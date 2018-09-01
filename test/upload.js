@@ -5,6 +5,9 @@ require('dotenv').config({path:'../config.env'})
 //new telegraf bot
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
+//mid_ware
+bot.use(commandParts())
+
 bot.command('uploadVideo',(ctx) => { 
 	let Viedo = ctx.state.command.args
 	console.log(ctx.state.command.args)
