@@ -3,6 +3,7 @@ var WebTorrent = require('webtorrent')
 require('dotenv').config({path:'./config.env'})
 const Telegraf = require('telegraf')
 const commandParts = require('telegraf-command-parts')
+const file = require('./file.js')
 
 //new telegraf bot
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -49,6 +50,38 @@ bot.command('remove',(ctx) => {
 	} catch (err){
 		ctx.reply('torrent remove failed')
 	}
+})
+
+bot.command('ls',(ctx) => {
+	let Path = ctx.state.command.args
+	ctx.reply(`${file.listPath(Path)}`)
+})
+
+bot.command('list',(ctx) => {
+	ctx.reply(`${file.listPath('./file_save')}`)
+})
+
+bot.command('rm',(ctx) => {
+	let Path = ctx.state.command.args
+	try{
+		file.removeFolder(Path, (err) => 
+		{
+			if(error){
+				throw err
+			} else{
+				ctx.reply('removeFolder successful')
+			}
+		})
+	} catch (err){
+		ctx.reply('removeFolder failed')
+	}
+})
+
+bot.command('uploadVideo',(ctx) => {
+	let video = ctx.state.command.args
+	ctx.replyWithVideo({
+		source: `${video}`
+	})
 })
 
 bot.startPolling()

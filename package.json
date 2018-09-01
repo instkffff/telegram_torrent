@@ -11,7 +11,8 @@
     "telegraf": "3.22.2",
     "telegraf-command-parts": "1.0.3",
     "telegraf-logger": "3.0.0",
-    "webtorrent": "^0.102.2"
+    "webtorrent": "^0.102.2",
+    "file-manager-js": "3.1.5"
   },
   "devDependencies": {},
   "scripts": {
