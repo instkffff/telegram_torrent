@@ -86,9 +86,11 @@ bot.command('rm',(ctx) => {
 
 //uploadVideo
 bot.command('uploadVideo',(ctx) => { 
+	let Viedo = ctx.state.command.args
 	ctx.replyWithVideo({
-		source: `ctx.state.command.args`
+		source: `./file_save/${Viedo}`
 	})
+	.catch((error) => {ctx.reply('failed')})
 })
 
 bot.startPolling()
