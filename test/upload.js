@@ -9,10 +9,9 @@ const bot = new Telegraf(process.env.BOT_TOKEN)
 bot.use(commandParts())
 
 bot.command('uploadVideo',(ctx) => { 
-	let Viedo = ctx.state.command.args
-	console.log(ctx.state.command.args)
+	let Video = ctx.state.command.args
 	ctx.telegram.sendDocument({
-		source: './file_save/bbb_sunflower_1080p_60fps_stereo_abl.mp4'
+		source: `/home/telegram_torrent/file_save/${Video}`
 	})
 	.catch((error) => {ctx.reply(error)})
 })

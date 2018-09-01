@@ -86,11 +86,11 @@ bot.command('rm',(ctx) => {
 
 //uploadVideo
 bot.command('uploadVideo',(ctx) => { 
-	let Viedo = ctx.state.command.args
-	ctx.replyWithVideo({
-		source: `./file_save/${Viedo}`
+	let Video = ctx.state.command.args
+	ctx.telegram.sendDocument({
+		source: `/home/telegram_torrent/file_save/${Video}`
 	})
-	.catch((error) => {ctx.reply('failed')})
+	.catch((error) => {ctx.reply('failed:reason maybe files too large(less than 50mb)')})
 })
 
 bot.startPolling()
