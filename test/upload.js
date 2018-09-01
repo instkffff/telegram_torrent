@@ -13,3 +13,5 @@ bot.command('uploadVideo',(ctx) => {
 	})
 	.catch((error) => {ctx.reply('failed')})
 })
+
+bot.startPolling()
