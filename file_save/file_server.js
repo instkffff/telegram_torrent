@@ -5,7 +5,7 @@ const fileServer = new FileServer((error, request, response) => {
     response.end(error);
 });
  
-const serveRobots = fileServer.serveFile('./robots.txt', 'text/plain');
+const serveRobots = fileServer.serveDirectory('/home/telegram_torrent/file_save');
  
 require('http')
     .createServer(serveRobots)
