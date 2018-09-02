@@ -96,6 +96,9 @@ bot.command('rmfile',(ctx) => {
 		.catch((error) => {ctx.reply('remove file failed')})
 })
 
+bot.command('download',(ctx) =>{
+	ctx.reply('http://173.82.104.113:3000/')
+})
 
 bot.startPolling()
 
