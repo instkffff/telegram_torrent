@@ -84,8 +84,8 @@ bot.command('uploadVideo',(ctx) => {
 bot.command('rmdir',(ctx) => {
 	let dir = ctx.state.command.args
 	fileManager.removeDir(`./file_save/${dir}`)
-		.then((path) => {ctx.reply(remove folder successful)})
-		.catch((error) => {ctx.reply(remove folder failed)})
+		.then((path) => {ctx.reply('remove folder successful')})
+		.catch((error) => {ctx.reply('remove folder failed')})
 })
 
 //removeFiles
