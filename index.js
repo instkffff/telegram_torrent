@@ -80,5 +80,22 @@ bot.command('uploadVideo',(ctx) => {
 	.catch((error) => {ctx.reply('failed:reason maybe files too large(less than 50mb)')})
 })
 
+//removeFolder
+bot.command('rmdir',(ctx) => {
+	let dir = ctx.state.command.args
+	fileManager.removeDir(`./file_save/${dir}`)
+		.then((path) => {ctx.reply(remove folder successful)})
+		.catch((error) => {ctx.reply(remove folder failed)})
+})
+
+//removeFiles
+bot.command('rmfile',(ctx) => {
+	let filename = ctx.state.command.args
+	fileManager.removeFile(`./file_save/${filename}`)
+		.then((path) => {ctx.reply(remove file successful)})
+		.catch((error) => {ctx.reply(remove file failed)})
+})
+
+
 bot.startPolling()
 
