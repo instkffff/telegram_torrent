@@ -92,8 +92,8 @@ bot.command('rmdir',(ctx) => {
 bot.command('rmfile',(ctx) => {
 	let filename = ctx.state.command.args
 	fileManager.removeFile(`./file_save/${filename}`)
-		.then((path) => {ctx.reply(remove file successful)})
-		.catch((error) => {ctx.reply(remove file failed)})
+		.then((path) => {ctx.reply('remove file successful')})
+		.catch((error) => {ctx.reply('remove file failed')})
 })
 
 
