@@ -4,7 +4,7 @@ require('dotenv').config({path:'./config.env'})
 const Telegraf = require('telegraf')
 const commandParts = require('telegraf-command-parts')
 const fileManager = require('file-manager-js')
-const downloader = require('node-downloader-helper')
+const { DownloaderHelper } = require('node-downloader-helper')
 
 //new telegraf bot
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -19,7 +19,7 @@ bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, 
 //wget
 bot.command('download',(ctx) => {
 	let http_url = ctx.state.command.args
-	let dl = new downloader(http_url, './file_save')
+	let dl = new DownloaderHelper(http_url, './file_save')
 	dl.on('end', () => ctx.replay('download completed'))
 	dl.start()
 })
