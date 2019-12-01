@@ -21,7 +21,7 @@ bot.command('download',(ctx) => {
 	let http_url = ctx.state.command.args
 	let dl = new DownloaderHelper(http_url, './file_save')
 	dl.on('start',function(){
-		ctx.replay('donwload start')
+		ctx.reply('donwload start')
 	})
 	dl.on('end', function(){
 		ctx.reply('download completed')
