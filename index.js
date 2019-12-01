@@ -27,7 +27,7 @@ bot.command('wget',(ctx) => {
 	function (error, response,body){
 		if(error){
 			ctx.replay('download failed')
-			console.log(wget error)
+			console.log('wget error')
 		}
 		else{
 			ctx.replay('download successful')
