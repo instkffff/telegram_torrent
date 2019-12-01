@@ -14,7 +14,7 @@
     "webtorrent": "^0.102.2",
     "file-manager-js": "3.1.5",
     "serve":"10.0.0",
-    "node-wget":"0.4.3"
+    "node-downloader-helper":"1.0.11"
 
   },
   "devDependencies": {},

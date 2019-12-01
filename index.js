@@ -4,7 +4,7 @@ require('dotenv').config({path:'./config.env'})
 const Telegraf = require('telegraf')
 const commandParts = require('telegraf-command-parts')
 const fileManager = require('file-manager-js')
-const wget = require('node-wget')
+const downloader = require('node-downloader-helper')
 
 //new telegraf bot
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -17,23 +17,11 @@ bot.start((ctx) => ctx.reply('Welcome! please check /help for more information')
 bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, if you want use please contact NightCandle for permission.'))
 
 //wget
-bot.command('wget',(ctx) => {
+bot.command('download',(ctx) => {
 	let http_url = ctx.state.command.args
-	wget({
-		url: http_url,
-		timeout: 2000
-	},
-	function (error, response,body){
-		if(error){
-			ctx.replay('download failed')
-			console.log('wget error')
-		}
-		else{
-			ctx.replay('download successful')
-			console.log(response.headers)
-		}
-	}
-	)
+	let dl = new downloader(http_url, './file_save')
+	dl.on('end', () => ctx.replay('download completed'))
+	dl.start()
 })
 
 //torrent magnetic
