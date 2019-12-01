@@ -16,12 +16,19 @@ bot.use(commandParts())
 bot.start((ctx) => ctx.reply('Welcome! please check /help for more information'))
 bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, if you want use please contact NightCandle for permission.'))
 
-//wget
+//downloader
 bot.command('download',(ctx) => {
 	let http_url = ctx.state.command.args
 	let dl = new DownloaderHelper(http_url, './file_save')
 	dl.on('end', function(){
 		ctx.reply('download completed')
+	})
+	dl.on('error',function(){
+		ctx.reply('download failed')
+	})
+	dl.on('timeout',function(){
+		dl.stop()
+		ctx.reply('download failed')
 	})
 	dl.start()
 })
