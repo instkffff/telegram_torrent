@@ -20,7 +20,9 @@ bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, 
 bot.command('download',(ctx) => {
 	let http_url = ctx.state.command.args
 	let dl = new DownloaderHelper(http_url, './file_save')
-	dl.on('end', () => ctx.replay('download completed'))
+	dl.on('end', function(){
+		ctx.replay('download completed')
+	})
 	dl.start()
 })
 
