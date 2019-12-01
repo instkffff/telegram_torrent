@@ -117,6 +117,18 @@ bot.command('rmfile',(ctx) => {
 		.catch((error) => {ctx.reply('remove file failed')})
 })
 
+//rename
+bot.command('rename',(ctx) => {
+	let filename = ctx.state.command.args
+	ctx.reply('input new name')
+	bot.command('newname',(ctx) =>{
+		let newname = ctx.state.command.args
+		fileManager.rename(`./file_save/${filename}`,`./file_save/${newname}`)
+			.then((newPath) => {ctx.reply('rename successful')})
+			.catch((error) => {ctx.reply('rename failed')})
+	})
+})
+
 bot.command('download',(ctx) =>{
 	ctx.reply('http://173.82.104.113:3000/')
 })
