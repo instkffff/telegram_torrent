@@ -13,7 +13,9 @@
     "telegraf-logger": "3.0.0",
     "webtorrent": "^0.102.2",
     "file-manager-js": "3.1.5",
-    "serve":"10.0.0"
+    "serve":"10.0.0",
+    "node-wget":"0.4.3"
+
   },
   "devDependencies": {},
   "scripts": {
