@@ -21,7 +21,6 @@ bot.command('wget',(ctx) => {
 	let http_url = ctx.state.command.args
 	wget({
 		url: http_url,
-		dest: './file_save',
 		timeout: 2000
 	},
 	function (error, response,body){
