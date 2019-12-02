@@ -119,18 +119,14 @@ bot.command('rmfile',(ctx) => {
 
 //rename
 bot.command('rename',(ctx) => {
-	let filename = ctx.state.command.args
+	file_name = ctx.state.command.args
 	ctx.reply('input new name')
 	bot.command('newname',(ctx) =>{
 		let newname = ctx.state.command.args
-		fileManager.rename(`./file_save/${filename}`,`./file_save/${newname}`)
+		fileManager.rename(`./file_save/${file_name}`,`./file_save/${newname}`)
 			.then((newPath) => {ctx.reply('rename successful')})
 			.catch((error) => {ctx.reply('rename failed')})
 	})
-})
-
-bot.command('download',(ctx) =>{
-	ctx.reply('http://173.82.104.113:3000/')
 })
 
 bot.startPolling()
