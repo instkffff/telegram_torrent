@@ -138,22 +138,40 @@ const serve = new (forever.Monitor)('./serve.js',{
 	max: 1
 })
 
+function online(){
+	return new Promise(
+		function(resolve,reject){
+			serve.start(function(err,result){
+				if(err){
+					reject(err)
+				}
+				resolve('successful')
+			})
+		}
+	)
+}
+
+function offline(){
+	return new Promise(
+		function(resolve,reject){
+			serve.stop(function(err,result){
+				if(err){
+					reject(err)
+				}
+				resolve('successful')
+			})
+		}
+	)
+}
+
+
+
 bot.command('serve',(ctx) => {
-	try {
-		serve.start()
-	}
-	catch (err) {
-		ctx.reply('bad request')
-	}	
+	online()	
 })
 
 bot.command('stop',(ctx) => {
-	try{
-		serve.stop()
-	}
-	catch (err) {
-		ctx.reply('bad request')
-	}
+	offline()
 })
 
 bot.command('status',(ctx) => {
