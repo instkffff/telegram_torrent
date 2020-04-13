@@ -139,11 +139,21 @@ const serve = new (forever.Monitor)('./serve.js',{
 })
 
 bot.command('serve',(ctx) => {
-	serve.start()	
+	try {
+		serve.start()
+	}
+	catch (err) {
+		ctx.reply('bad request')
+	}	
 })
 
 bot.command('stop',(ctx) => {
-	serve.stop()
+	try{
+		serve.stop()
+	}
+	catch (err) {
+		ctx.reply('bad request')
+	}
 })
 
 bot.command('status',(ctx) => {
@@ -153,10 +163,6 @@ bot.command('status',(ctx) => {
 	serve.on('exit',function(){
 		ctx.reply('serve offline')
 	})
-})
-
-process.on('uncaughtException', (err, origin) => {
-  	console.log('e')
 })
 
 bot.startPolling()
