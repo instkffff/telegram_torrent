@@ -155,9 +155,9 @@ bot.command('status',(ctx) => {
 	})
 })
 
-process.on("uncatchException", function(e) {
-    console.log(e);
-    process.exit(1);
-});
+process.on('uncaughtException', (err, origin) => {
+  	console.log(e)
+  	process.exit(1)
+})
 
 bot.startPolling()
