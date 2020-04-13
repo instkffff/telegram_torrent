@@ -139,19 +139,21 @@ const serve = new (forever.Monitor)('./serve.js',{
 })
 
 bot.command('restart',(ctx) => {
-	serve.restart().catch((error) => {ctx.reply('serve offline now')})
-	ctx.reply('serve restart')
-
+	serve.restart()
+		.then((res) => {ctx.reply('serve restart')})
+		.catch((error) => {ctx.reply('serve offline now')})
 })
 
 bot.command('serve',(ctx) => {
-	serve.start().catch((error) => {ctx.reply('serve online now')})
-	ctx.reply('serve start')
+	serve.start()
+		.then((res) => {ctx.reply('serve start')})
+		.catch((error) => {ctx.reply('serve online now')})
 })
 
 bot.command('stopserve',(ctx) => {
-	serve.stop().catch((error) => {ctx.reply('serve offline now')})
-	ctx.reply('serve stop')
+	serve.stop()
+		.then((res) => {ctx.reply('serve stop')})
+		.catch((error) => {ctx.reply('serve offline now')})
 })
 
 bot.command('servestatus',(ctx) => {
