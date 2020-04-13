@@ -139,21 +139,11 @@ const serve = new (forever.Monitor)('./serve.js',{
 })
 
 bot.command('serve',(ctx) => {
-	ctx.reply('serve start')
-	try {
-		serve.start()
-	}catch(err) {
-		ctx.reply('request error')
-	}
+	serve.start()	
 })
 
 bot.command('stop',(ctx) => {
-	ctx.reply('serve stop')
-	try {
-		serve.stop()
-	}catch(err) {
-		ctx.reply('request error')
-	}
+	serve.stop()
 })
 
 bot.command('status',(ctx) => {
