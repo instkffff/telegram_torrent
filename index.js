@@ -156,7 +156,7 @@ bot.command('status',(ctx) => {
 })
 
 process.on('uncaughtException', (err, origin) => {
-  	console.log(e)
+  	console.log('e')
   	process.exit(1)
 })
 
