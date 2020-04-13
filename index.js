@@ -5,6 +5,7 @@ const Telegraf = require('telegraf')
 const commandParts = require('telegraf-command-parts')
 const fileManager = require('file-manager-js')
 const { DownloaderHelper } = require('node-downloader-helper')
+const forever = require('forever-monitor')
 
 //new telegraf bot
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -126,6 +127,29 @@ bot.command('rename',(ctx) => {
 		fileManager.rename(`./file_save/${file_name}`,`./file_save/${newname}`)
 			.then((newPath) => {ctx.reply('rename successful')})
 			.catch((error) => {ctx.reply('rename failed')})
+	})
+})
+
+//restart
+
+const serve = new (forever.Monitor)('./file_save/serve.js'{
+	slient : true
+})
+
+bot.command('restart',(ctx) => {
+	serve.restart()
+	serve.on('restart',function{
+		ctx.reply('restart serve')
+	})
+	serve.on('exit',function{
+		serve.start()
+	})
+})
+
+bot.command('serve',(ctx) => {
+	serve.start()
+	serve.on('start',function{
+		ctx.reply('serve start')
 	})
 })
 
