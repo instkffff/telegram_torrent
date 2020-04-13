@@ -135,7 +135,7 @@ bot.command('rename',(ctx) => {
 const serve = new (forever.Monitor)('./serve.js',{
 	slient : true ，
 	uid: '54123',
-	max: 1,
+	max: 1
 })
 
 bot.command('restart',(ctx) => {
