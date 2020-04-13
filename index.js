@@ -132,7 +132,7 @@ bot.command('rename',(ctx) => {
 
 //restart
 
-const serve = new (forever.Monitor)('./file_save/serve.js'{
+const serve = new (forever.Monitor)('./file_save/serve.js',{
 	slient : true
 })
 
