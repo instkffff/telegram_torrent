@@ -153,5 +153,12 @@ bot.command('serve',(ctx) => {
 	})
 })
 
+bot.command('stopserve',(ctx) => {
+	serve.stop()
+	serve.on('exit',function(){
+		ctx.reply('serve stop')
+	})
+})
+
 bot.startPolling()
 
