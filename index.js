@@ -140,24 +140,27 @@ const serve = new (forever.Monitor)('./serve.js',{
 
 bot.command('restart',(ctx) => {
 	serve.restart()
-	serve.on('restart',function(){
-		ctx.reply('restart serve')
-	})
+	ctx.reply('serve restart')
+
 })
 
 bot.command('serve',(ctx) => {
 	serve.start()
-	serve.on('start',function(){
-		ctx.reply('serve start')
-	})
+	ctx.reply('serve start')
 })
 
 bot.command('stopserve',(ctx) => {
 	serve.stop()
+	ctx.reply('serve stop')
+})
+
+bot.command('servestatus',(ctx) => {
+	serve.on('start',function(){
+		ctx.reply('serve online')
+	})
 	serve.on('exit',function(){
-		ctx.reply('serve stop')
+		ctx.reply('serve offline')
 	})
 })
 
 bot.startPolling()
-
