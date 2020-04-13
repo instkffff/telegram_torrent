@@ -141,9 +141,6 @@ bot.command('restart',(ctx) => {
 	serve.on('restart',function(){
 		ctx.reply('restart serve')
 	})
-	serve.on('exit',function(){
-		serve.start()
-	})
 })
 
 bot.command('serve',(ctx) => {
