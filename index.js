@@ -138,17 +138,17 @@ const serve = new (forever.Monitor)('./file_save/serve.js'{
 
 bot.command('restart',(ctx) => {
 	serve.restart()
-	serve.on('restart',function{
+	serve.on('restart',function(){
 		ctx.reply('restart serve')
 	})
-	serve.on('exit',function{
+	serve.on('exit',function(){
 		serve.start()
 	})
 })
 
 bot.command('serve',(ctx) => {
 	serve.start()
-	serve.on('start',function{
+	serve.on('start',function(){
 		ctx.reply('serve start')
 	})
 })
