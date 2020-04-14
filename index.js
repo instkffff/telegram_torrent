@@ -167,20 +167,13 @@ function offline(){
 
 
 bot.command('serve',(ctx) => {
-	online()	
+	online()
+	ctx.reply(serve online)	
 })
 
 bot.command('stop',(ctx) => {
 	offline()
-})
-
-bot.command('status',(ctx) => {
-	serve.on('start',function(){
-		ctx.reply('serve online')
-	})
-	serve.on('exit',function(){
-		ctx.reply('serve offline')
-	})
+	ctx.reply(serve offline)
 })
 
 bot.startPolling()
