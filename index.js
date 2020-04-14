@@ -168,12 +168,12 @@ function offline(){
 
 bot.command('serve',(ctx) => {
 	online()
-	ctx.reply(serve online)	
+	ctx.reply('serve online')	
 })
 
 bot.command('stop',(ctx) => {
 	offline()
-	ctx.reply(serve offline)
+	ctx.reply('serve offline')
 })
 
 bot.startPolling()
