@@ -85,7 +85,7 @@ bot.command('remove',(ctx) => {
 
 //list
 bot.command('list',(ctx) => {
-	fileManager.list('./file_save')
+	fileManager.listDeep('./file_save')
 		.then((entries) => {
 			const regex = /,/gi
 			const regex1 = /file_save///gi
