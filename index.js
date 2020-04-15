@@ -6,6 +6,7 @@ const commandParts = require('telegraf-command-parts')
 const fileManager = require('file-manager-js')
 const { DownloaderHelper } = require('node-downloader-helper')
 const forever = require('forever-monitor')
+const json2md = require('json2md')
 
 //new telegraf bot
 const bot = new Telegraf(process.env.BOT_TOKEN)
@@ -78,7 +79,9 @@ bot.command('remove',(ctx) => {
 bot.command('list',(ctx) => {
 	fileManager.list('./file_save')
 		.then((entries) => {
-			ctx.reply(entries)
+			let filelist = JSON.stringify(entries)
+			let replymd = json2md(filelist)
+			ctx.replyWithMarkdown(replymd)
 		})
 		.catch((error) => {ctx.reply(error.code)})
 })
