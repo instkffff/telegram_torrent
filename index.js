@@ -87,8 +87,11 @@ bot.command('remove',(ctx) => {
 bot.command('list',(ctx) => {
 	fileManager.list('./file_save')
 		.then((entries) => {
+			const regex = /,/gi
 			let replymd = json2md(entries)
-			ctx.replyWithMarkdown(replymd)
+			let md = replymd.replace(regex,'<br>')
+
+			ctx.telegram.sendMessage(md,{parse_mode:'markdown'})
 		})
 		.catch((error) => {ctx.reply(error.code)})
 })
