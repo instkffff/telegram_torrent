@@ -87,7 +87,7 @@ bot.command('remove',(ctx) => {
 bot.command('list',(ctx) => {
 	fileManager.listDeep('./file_save')
 		.then((entries) => {
-			const regex = \,\gi
+			const regex = /,/gi
 
 			let replymd = json2md(entries)
 			let md1 = replymd.replace(regex,'\n')
