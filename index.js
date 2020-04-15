@@ -10,10 +10,10 @@ const json2md = require('json2md')
 
 //converters
 json2md.converters.files = function (input, json2md) {
-	return '=====files=====' + '\n' + input
+	return '===== files =====' + '\n' + input
 }
 json2md.converters.dirs = function (input, json2md) {
-	return '=====dirs=====' + '\n' + input
+	return '===== dirs =====' + '\n' + input
 }
 
 //new telegraf bot
