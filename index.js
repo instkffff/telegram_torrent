@@ -89,7 +89,7 @@ bot.command('list',(ctx) => {
 		.then((entries) => {
 			const regex = /,/gi
 			let replymd = json2md(entries)
-			let md = replymd.replace(regex,'<br>')
+			let md = replymd.replace(regex,'\n')
 
 			ctx.replyWithMarkdown(md)
 		})
