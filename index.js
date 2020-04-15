@@ -87,11 +87,11 @@ bot.command('remove',(ctx) => {
 bot.command('list',(ctx) => {
 	fileManager.listDeep('./file_save')
 		.then((entries) => {
-			const regex = /,/gi
-			const regex1 = /file_save///gi
+			const regex = \,\gi
+
 			let replymd = json2md(entries)
 			let md1 = replymd.replace(regex,'\n')
-			let md = md1.replace(regex1,'')
+			let md = md1.replace(new RegExp('file_save/', 'g'),'')
 
 			ctx.replyWithMarkdown(md)
 		})
