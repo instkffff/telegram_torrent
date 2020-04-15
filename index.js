@@ -10,10 +10,10 @@ const json2md = require('json2md')
 
 //converters
 json2md.converters.files = function (input, json2md) {
-	return '*files*' + '\n' + input
+	return '=====files=====' + '\n' + input
 }
 json2md.converters.dirs = function (input, json2md) {
-	return '*dirs*' + '\n' + input
+	return '=====dirs=====' + '\n' + input
 }
 
 //new telegraf bot
@@ -93,7 +93,7 @@ bot.command('list',(ctx) => {
 			let md1 = replymd.replace(regex,'\n')
 			let md = md1.replace(new RegExp('file_save/', 'g'),'')
 
-			ctx.replyWithMarkdown(md)
+			ctx.reply(md)
 		})
 		.catch((error) => {ctx.reply(error.code)})
 })
