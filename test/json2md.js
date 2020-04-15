@@ -7,9 +7,11 @@ json2md.converters.dirs = function (input, json2md) {
 }
 
 
-let md = json2md({"files":["file_save/09x07.mkv","file_save/09x07.srt","file_save/09x08.mkv","file_save/09x08.srt","file_save/09x09.mkv","file_save/09x09.srt","file_save/09x10.mkv","file_save/09x10.srt","file_save/09x11.mkv","file_save/09x11.srt","file_save/09x12.mkv","file_save/09x12.srt","file_save/09x13.mkv","file_save/09x13.srt"],"dirs":[]})
+let md = json2md({"files":["file_save/09x07.mkv","file_save/09x07.srt","file_save/09x08.mkv","file_save/09x08.srt","file_save/09x09.mkv","file_save/09x09.srt","file_save/09x10.mkv","file_save/09x10.srt","file_save/09x11.mkv","file_save/09x11.srt","file_save/09x12.mkv","file_save/09x12.srt","file_save/09x13.mkv","file_save/09x13.srt","file_save/[OPFansMaplesnow][One_Piece][928][MP4]/[OPFansMaplesnow][One_Piece][928][MP4].mp4","file_save/[OPFansMaplesnow][One_Piece][928][MP4]/www.opfans.org"],"dirs":["file_save/[OPFansMaplesnow][One_Piece][928][MP4]"]})
 const regex = /,/gi
+const regex1 = /file_save//gi
 
-MD = md.replace(regex,'<br>')
+Md = md.replace(regex,'\n')
+MD = Md.replace(regex1,'')
 
 console.log(MD)
