@@ -8,6 +8,14 @@ const { DownloaderHelper } = require('node-downloader-helper')
 const forever = require('forever-monitor')
 const json2md = require('json2md')
 
+//converters
+json2md.converters.files = function (input, json2md) {
+	return '### files' + '<br>' + input
+}
+json2md.converters.dirs = function (input, json2md) {
+	return '### dirs' + '<br>' + input
+}
+
 //new telegraf bot
 const bot = new Telegraf(process.env.BOT_TOKEN)
 //new torrent client
@@ -79,8 +87,7 @@ bot.command('remove',(ctx) => {
 bot.command('list',(ctx) => {
 	fileManager.list('./file_save')
 		.then((entries) => {
-			let filelist = JSON.stringify(entries)
-			let replymd = json2md(filelist)
+			let replymd = json2md(entries)
 			ctx.replyWithMarkdown(replymd)
 		})
 		.catch((error) => {ctx.reply(error.code)})
