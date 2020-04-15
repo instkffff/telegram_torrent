@@ -88,8 +88,10 @@ bot.command('list',(ctx) => {
 	fileManager.list('./file_save')
 		.then((entries) => {
 			const regex = /,/gi
+			const regex1 = /file_save//gi
 			let replymd = json2md(entries)
-			let md = replymd.replace(regex,'\n')
+			let md1 = replymd.replace(regex,'\n')
+			let md = md1.replace(regex1,'')
 
 			ctx.replyWithMarkdown(md)
 		})
