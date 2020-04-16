@@ -7,6 +7,7 @@ const fileManager = require('file-manager-js')
 const { DownloaderHelper } = require('node-downloader-helper')
 const forever = require('forever-monitor')
 const json2md = require('json2md')
+const moveFile = require('move-file')
 
 //converters
 json2md.converters.files = function (input, json2md) {
@@ -25,6 +26,22 @@ bot.use(commandParts())
 //normal
 bot.start((ctx) => ctx.reply('Welcome! please check /help for more information'))
 bot.help((ctx) => ctx.reply('just for personal use torrent client via telegram, if you want use please contact NightCandle for permission.'))
+
+//movefile
+bot.command('movefile',(ctx) => {
+	files = ctx.state.command.args
+	ctx.reply('input newPath')
+	bot.command('newpath', async (ctx) => {
+		let newpath = ctx.state.command.args
+		try {
+			await moveFile(`./file_save/${files}`, `./file_save/${newpath}`)
+			ctx.reply('movefile successful')
+		} catch {
+			ctx.reply('movefile failed')
+		}		
+	})
+})
+
 
 //downloader
 bot.command('download',(ctx) => {

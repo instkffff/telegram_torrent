@@ -8,6 +8,7 @@
     "file-manager-js": "3.1.5",
     "forever-monitor": "^2.0.0",
     "json2md": "^1.7.0",
+    "move-file": "^1.2.0",
     "node-downloader-helper": "1.0.11",
     "npm": "^6.4.0",
     "regexgen.js": "^0.2.1",
