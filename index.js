@@ -77,6 +77,21 @@ bot.command('magnetic',(ctx) => {
 		})
 })
 
+//youtube
+bot.command('ytdl',(ctx) => {
+	let url = ctx.state.command.args
+	let name = url.match(/\.be.*/)
+	try{
+		ytdl(url)
+			.pipe(fs.createWriteStream(`./file_save/${name}.mp4`))
+				.on('close', () => {
+					ctx.reply('youtube download finished')
+				})
+	} catch (err){
+		console.log('youtube download failed')
+	}
+})
+
 //state
 bot.command('progress',(ctx) =>{
 	console.log(client.progress)
@@ -134,21 +149,6 @@ bot.command('uploadVideo',(ctx) => {
 		source: `/home/telegram_torrent/file_save/${Video}`
 	})
 	.catch((error) => {ctx.reply('failed:reason maybe files too large(less than 50mb)')})
-})
-
-//youtube
-bot.command('ytdl',(ctx) => {
-	let url = ctx.state.catch.args
-	let name = url.match(/\.be.*/)
-	try{
-		ytdl(url)
-			.pipe(fs.createWriteStream(`./file_save/${name}.mp4`))
-				.on('close', () => {
-					ctx.reply('youtube download finished')
-				})
-	} catch (err){
-		console.log('youtube download failed')
-	}
 })
 
 //removeFolder
