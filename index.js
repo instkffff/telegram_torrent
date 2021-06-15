@@ -82,6 +82,7 @@ bot.command('ytdl',(ctx) => {
 	let url = ctx.state.command.args
 	let name = url.match(/(?<=^.{17}).*/)
 	try{
+		ctx.replay('youtube download start')
 		ytdl(url)
 			.pipe(fs.createWriteStream(`./file_save/${name}.mp4`))
 				.on('close', () => {
