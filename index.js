@@ -8,6 +8,8 @@ const { DownloaderHelper } = require('node-downloader-helper')
 const forever = require('forever-monitor')
 const json2md = require('json2md')
 const moveFile = require('move-file')
+const ytdl = require('ytdl-core')
+const fs = require('fs')
 
 //converters
 json2md.converters.files = function (input, json2md) {
@@ -132,6 +134,21 @@ bot.command('uploadVideo',(ctx) => {
 		source: `/home/telegram_torrent/file_save/${Video}`
 	})
 	.catch((error) => {ctx.reply('failed:reason maybe files too large(less than 50mb)')})
+})
+
+//youtube
+bot.command('ytdl',(ctx) => {
+	let url = ctx.state.catch.args
+	let name = url.match(/\.be.*/)
+	try{
+		ytdl(url)
+			.pipe(fs.createWriteStream(`./file_save/${name}.mp4`))
+				.on('close', () => {
+					ctx.reply('youtube download finished')
+				})
+	} catch (err){
+		console.log('youtube download failed')
+	}
 })
 
 //removeFolder
