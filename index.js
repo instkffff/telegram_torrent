@@ -80,7 +80,7 @@ bot.command('magnetic',(ctx) => {
 //youtube
 bot.command('ytdl',(ctx) => {
 	let url = ctx.state.command.args
-	let name = url.match(/\.be.*/)
+	let name = url.match(/(?<=^.{17}).*/)
 	try{
 		ytdl(url)
 			.pipe(fs.createWriteStream(`./file_save/${name}.mp4`))
