@@ -220,19 +220,19 @@ function offline(){
 bot.command('serve',(ctx) => {
 	try{
 		online()
+		ctx.reply('serve online')
 	}catch(error){
 		console.log(error)
-	}	
-	ctx.reply('serve online')	
+	}			
 })
 
 bot.command('stop',(ctx) => {	
 	try{
 		offline()
+		ctx.reply('serve offline')
 	}catch(error){
 		console.log(error)
 	}
-	ctx.reply('serve offline')
 })
 
 bot.startPolling()
