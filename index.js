@@ -218,12 +218,20 @@ function offline(){
 
 
 bot.command('serve',(ctx) => {
-	online()
+	try{
+		online()
+	}catch(error){
+		console.log(error)
+	}	
 	ctx.reply('serve online')	
 })
 
-bot.command('stop',(ctx) => {
-	offline()
+bot.command('stop',(ctx) => {	
+	try{
+		offline()
+	}catch(error){
+		console.log(error)
+	}
 	ctx.reply('serve offline')
 })
 
